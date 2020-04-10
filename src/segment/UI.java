@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+
 public class UI extends JPanel {
 
 	/**
@@ -19,7 +20,7 @@ public class UI extends JPanel {
 	 */
 	private static final long serialVersionUID = -4621924450652779205L;
 	private Segment[] segment = new Segment[8];
-	
+	private  int value;
 	public UI()
 	{
 		//this.setName("UI_Frame");
@@ -42,7 +43,7 @@ public class UI extends JPanel {
 		for (int i = 0; i < 3; i++)
 		{
 			dim.setSize(getSize().width/6, 300);
-			segment[i] = new Segment(dim, Color.LIGHT_GRAY);
+			segment[i] = new Segment(dim);
 			segment[i].setName("Segment #"+i);
 			segment[i].setPreferredSize(dim);
 			segment[i].setLayout(null);
@@ -55,13 +56,59 @@ public class UI extends JPanel {
 			}
 			add(segment[i]);
 		}
-
+                //setValue();
 	}
         
         
-        public void setValue (){
+        public void setValue (int value){
+            try{
+                
+                if (value >= 0 && value < 1000)
+            {
+                for (int i = 0; i < 8; i++){
+                segment[0].getPanelSeg(i).setVisible((Binary.CLOCKBIN[Binary.getNthDigit(value, 10, 3)][i] == true) ? true : false);
+                segment[1].getPanelSeg(i).setVisible((Binary.CLOCKBIN[Binary.getNthDigit(value, 10, 2)][i] == true) ? true : false);
+                segment[2].getPanelSeg(i).setVisible((Binary.CLOCKBIN[Binary.getNthDigit(value, 10, 1)][i] == true) ? true : false);
+            }}
+            else if( value < 0 && value >= -99){
+                for (int i = 0; i < 8; i++){
+                segment[0].getPanelSeg(i).setVisible((Binary.LETTERBIN[Binary.getMDigit()][i] == true) ? true : false);
+                int val = value > 0 ? value : -value;
+                segment[1].getPanelSeg(i).setVisible((Binary.CLOCKBIN[Binary.getNthDigit(val, 10, 2)][i] == true) ? true : false);
+                segment[2].getPanelSeg(i).setVisible((Binary.CLOCKBIN[Binary.getNthDigit(val, 10, 1)][i] == true) ? true : false);
+            }}
+//            else if( value < 0 && value >= -9){
+//                for (int i = 0; i < 8; i++){
+//                segment[0].getPanelSeg(i).setVisible((Binary.LETTERBIN[Binary.getFDigit()][i] == true) ? true : false);
+//                segment[1].getPanelSeg(i).setVisible((Binary.LETTERBIN[Binary.getMDigit()][i] == true) ? true : false);
+//                segment[2].getPanelSeg(i).setVisible((Binary.CLOCKBIN[Binary.getNthDigit(value, 10, 1)][i] == true) ? true : false);
+//            }}
+            else {
+                setError();
+            }
             
-            
-            
+            }
+            catch(NumberFormatException e)
+            {
+                System.out.println("error");
+                
+            } 
         }
+        
+        public void setError()
+        {
+            for (int i = 0; i < 8; i++){
+                segment[0].getPanelSeg(i).setVisible((Binary.LETTERBIN[Binary.getEDigit()][i] == true) ? true : false);
+                segment[1].getPanelSeg(i).setVisible((Binary.LETTERBIN[Binary.getRDigit()][i] == true) ? true : false);
+                segment[2].getPanelSeg(i).setVisible((Binary.LETTERBIN[Binary.getRDigit()][i] == true) ? true : false);
+                }
+        }
+        public int getValue()
+        {
+            
+            
+            
+            return value;
+        }
+         
 }

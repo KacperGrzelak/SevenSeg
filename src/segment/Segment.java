@@ -15,14 +15,14 @@ public class Segment extends JPanel {
 	private static final long serialVersionUID = -4980210296562972446L;
 	
 	private Rectangle[] rect = {
-			new Rectangle(20,10,105,10),
-			new Rectangle(125,20,10,115),
-			new Rectangle(125,145,10,115),
-			new Rectangle(20,260,105,10),
-			new Rectangle(10,145,10,115),
-			new Rectangle(10,20,10,115),
-			new Rectangle(20,135,105,10),
-                        new Rectangle(0,260,10,10)
+			new Rectangle(10,10,105,10),
+			new Rectangle(115,20,10,115),
+			new Rectangle(115,145,10,115),
+			new Rectangle(10,260,105,10),
+			new Rectangle(00,145,10,115),
+			new Rectangle(00,20,10,115),
+			new Rectangle(10,135,105,10),
+                        new Rectangle(130,260,13,13)
 		};
 	
 	private JPanel[] pnlSeg;
@@ -34,21 +34,22 @@ public class Segment extends JPanel {
 	
 	public Segment() {
 		super();
-		initSegment(new Dimension(90,90), Color.DARK_GRAY);
+		initSegment(new Dimension(90,90));
 		
 	}
 
-	public Segment(Dimension dim, Color col) {
+	public Segment(Dimension dim) {
 		super();
-		initSegment(dim, col);
+		initSegment(dim);
 	}
 
-	private void initSegment(Dimension dim, Color col)
+	private void initSegment(Dimension dim)
 	{
 		this.setName("HauptSegment");
 		//this.setBackground(Color.BLACK);
 		this.setSize(dim);
 		this.pnlSeg = new JPanel[8];
+                this.setOpaque(false);
 		
 		for (int j = 0; j < 8; j++)
 		{
