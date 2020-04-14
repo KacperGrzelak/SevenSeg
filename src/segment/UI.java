@@ -28,7 +28,7 @@ public class UI extends JPanel {
 		//setIconImage(new ImageIcon(Constants.ICO_URL).getImage());
 		//setTitle(Constants.APP_TITLE);
 		setSize(880, 300);
-		setLocation(800, 600);
+		//setLocation(800, 600);
 		//setResizable(false);
 		//getContentPane().setBackground(Color.DARK_GRAY);
                 //setBackground(Color.blue);
